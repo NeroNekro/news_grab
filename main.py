@@ -70,7 +70,8 @@ class NewsGrab():
             r = message.send(to=receiver,
                              smtp={'host':self.host, 'port': self.port, 'ssl': True, 'user': self.user, 'password': self.password})
             if r.status_code not in [250, ]:
-                pass
+                print(r.status_code)
+            print(receiver)
             time.sleep(5)
 
 if "__main__" == __name__:
