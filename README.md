@@ -1,7 +1,7 @@
-##Beschreibung
+## Beschreibung
 Ein einfacher RSS Reader, der die Nachrichten (Titel) mit bestimmten Schlagwörtern durchsucht und anschließend eine Zusammenfassung per Mail versendet
 
-##Config.ini
+## Config.ini
 Zum Betreiben des Tools wird noch eine config.ini benötigt. Die Datei muss sich im gleichen Ordner wie die main.py befinden.
 ```
 [CONFIG]
@@ -19,5 +19,5 @@ port = 465
 pass = starkespasswortinklartext
 ```
 
-##Lizenz
+## Lizenz
 Ein Backlink oder Hinweis zum Author wären nett :)
