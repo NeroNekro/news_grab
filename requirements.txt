@@ -1,0 +1,15 @@
+cachetools==4.2.2
+certifi==2021.5.30
+chardet==4.0.0
+cssselect==1.1.0
+cssutils==2.3.0
+emails==0.6
+feedparser==6.0.8
+idna==2.10
+lxml==4.6.3
+premailer==3.9.0
+python-dateutil==2.8.1
+requests==2.25.1
+sgmllib3k==1.0.0
+six==1.16.0
+urllib3==1.26.6

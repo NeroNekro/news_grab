@@ -1,0 +1,12 @@
+http://rss.focus.de/fol/XML/rss_folnews.xml
+https://rp-online.de/politik/feed.rss
+https://www.spiegel.de/politik/index.rss
+feed://newsfeed.zeit.de/politik/index
+https://www.welt.de/feeds/section/politik.rss
+https://www.faz.net/rss/aktuell/politik/
+https://www1.wdr.de/uebersicht-100.feed
+https://www.tagesschau.de/xml/rss2
+https://www.wn.de/rss/feed
+https://www.ksta.de/feed/politik/index.rss
+https://www.bild.de/rss-feeds/rss-16725492,feed=politik.bild.html
+http://www.n24.de/service/rss_podcasts/rssfeed.html
