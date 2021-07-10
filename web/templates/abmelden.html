@@ -1,0 +1,58 @@
+<!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
+<html>
+<head>
+    <link href="{{ url_for('static', filename='/style.css') }}" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='/bootstrap.css') }}" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='/bootstrap.js') }}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-xl-9 mx-auto">
+            <div class="card card-signin flex-row my-5">
+                <div class="card-img-left d-none d-md-flex">
+                    <!-- Background image for card set in CSS! -->
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Am Nachrichten Netzwerk abmelden</h5>
+                    <form class="form-inline" method="post" action="/abmelden">
+                        <div class="form-group">
+                            <input type="email" id="inputEmail" class="form-control" placeholder="Email Adresse"
+                                   name="email" required>
+
+                        </div>
+
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Abmelden</button>
+                        <a class="d-block text-center mt-2 small" href="/">Newsletter anmelden</a>
+
+
+                    </form>
+                    <a class="btn" href="#privacy">Datenschutzerklärung</a> / <a class="btn"
+                                                                                 href="#imprint">Impressum</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="privacy" class="modalDialog">
+    <div><a href="#close" title="Close" class="close">X</a>
+
+        <h2>Datenschutzerklärung</h2>
+
+
+    </div>
+</div>
+
+<div id="imprint" class="modalDialog">
+    <div><a href="#close" title="Close" class="close">X</a>
+
+        <h2>Impressum</h2>
+
+
+    </div>
+</div>
+
+</body>
+</html>

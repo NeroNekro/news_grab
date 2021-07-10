@@ -1,1 +1,4 @@
 /config.ini
+/emails.db
+/emails.db-shm
+/emails.db-wal
