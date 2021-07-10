@@ -48,52 +48,58 @@ class NewsGrab():
                         break
 
     def get_news_mediastack(self):
-        today = date.today() - timedelta(days=self.days)
-        conn = http.client.HTTPConnection('api.mediastack.com')
-        params = urllib.parse.urlencode({
-            'access_key': self.mediastack,
-            'categories': '-general',
-            'countries': 'de',
-            'languages': 'de',
-            'sort': 'published_desc',
-            'date': today.strftime('%Y-%m-%d'),
-            'limit': 100,
-        })
-        conn.request('GET', '/v1/news?{}'.format(params))
-        res = conn.getresponse()
-        data = res.read()
-        data = data.decode('utf-8')
-        data = json.loads(data)
-        for n in data["data"]:
-            for word in self.search_words:
-                if word in n["title"].lower():
-                    self.artikel.append({"title": n["title"],
-                                         "link": n["url"],
-                                         "datum": n["published_at"]})
-                    break
+        if self.mediastack == "" or self.mediastack == "apikey":
+            return
+        else:
+            today = date.today() - timedelta(days=self.days)
+            conn = http.client.HTTPConnection('api.mediastack.com')
+            params = urllib.parse.urlencode({
+                'access_key': self.mediastack,
+                'categories': '-general',
+                'countries': 'de',
+                'languages': 'de',
+                'sort': 'published_desc',
+                'date': today.strftime('%Y-%m-%d'),
+                'limit': 100,
+            })
+            conn.request('GET', '/v1/news?{}'.format(params))
+            res = conn.getresponse()
+            data = res.read()
+            data = data.decode('utf-8')
+            data = json.loads(data)
+            for n in data["data"]:
+                for word in self.search_words:
+                    if word in n["title"].lower():
+                        self.artikel.append({"title": n["title"],
+                                             "link": n["url"],
+                                             "datum": n["published_at"]})
+                        break
 
 
 
     def get_news_newscatcher(self):
-        conn = http.client.HTTPSConnection("newscatcher.p.rapidapi.com")
-        headers = {
-            'x-rapidapi-key': self.newscatcher,
-            'x-rapidapi-host': "newscatcher.p.rapidapi.com"
-        }
-        conn.request("GET", "/v1/latest_headlines?lang=de&country=de&media=True",
-                     headers=headers)
+        if self.newscatcher == "" or self.newscatcher == "apikey":
+            return
+        else:
+            conn = http.client.HTTPSConnection("newscatcher.p.rapidapi.com")
+            headers = {
+                'x-rapidapi-key': self.newscatcher,
+                'x-rapidapi-host': "newscatcher.p.rapidapi.com"
+            }
+            conn.request("GET", "/v1/latest_headlines?lang=de&country=de&media=True",
+                         headers=headers)
 
-        res = conn.getresponse()
-        data = res.read()
-        data = data.decode('utf-8')
-        data = json.loads(data)
-        for n in data["articles"]:
-            for word in self.search_words:
-                if word in n["summary"].lower():
-                    self.artikel.append({"title": n["title"],
-                                         "link": n["url"],
-                                         "datum": n["published_date"]})
-                    break
+            res = conn.getresponse()
+            data = res.read()
+            data = data.decode('utf-8')
+            data = json.loads(data)
+            for n in data["articles"]:
+                for word in self.search_words:
+                    if word in n["summary"].lower():
+                        self.artikel.append({"title": n["title"],
+                                             "link": n["url"],
+                                             "datum": n["published_date"]})
+                        break
 
 
 
