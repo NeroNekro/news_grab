@@ -46,34 +46,50 @@ class NewsGrab():
                                         "link": entry.link,
                                         "datum": entry.published})
                         break
+                    try:
+                        if word in entry.content[0]["value"].lower() and str(entry.published_parsed.tm_mday) == self.date:
+                            self.artikel.append({"title": entry.title,
+                                                 "link": entry.link,
+                                                 "datum": entry.published})
+                    except:
+                        pass
 
     def get_news_mediastack(self):
         if self.mediastack == "" or self.mediastack == "apikey":
             return
         else:
             today = date.today() - timedelta(days=self.days)
-            conn = http.client.HTTPConnection('api.mediastack.com')
-            params = urllib.parse.urlencode({
-                'access_key': self.mediastack,
-                'categories': '-general',
-                'countries': 'de',
-                'languages': 'de',
-                'sort': 'published_desc',
-                'date': today.strftime('%Y-%m-%d'),
-                'limit': 100,
-            })
-            conn.request('GET', '/v1/news?{}'.format(params))
-            res = conn.getresponse()
-            data = res.read()
-            data = data.decode('utf-8')
-            data = json.loads(data)
-            for n in data["data"]:
-                for word in self.search_words:
-                    if word in n["title"].lower():
-                        self.artikel.append({"title": n["title"],
-                                             "link": n["url"],
-                                             "datum": n["published_at"]})
-                        break
+            offset = 0
+            while True:
+                conn = http.client.HTTPConnection('api.mediastack.com')
+                params = urllib.parse.urlencode({
+                    'access_key': self.mediastack,
+                    'categories': '-entertainment,-sports',
+                    'countries': 'de',
+                    'languages': 'de',
+                    'sort': 'published_desc',
+                    'date': today.strftime('%Y-%m-%d'),
+                    'limit': 100,
+                    'offset': offset
+                })
+                conn.request('GET', '/v1/news?{}'.format(params))
+                res = conn.getresponse()
+                data = res.read()
+                data = data.decode('utf-8')
+                data = json.loads(data)
+                try:
+                    if data["data"]:
+                        pass
+                except:
+                    break
+                for n in data["data"]:
+                    for word in self.search_words:
+                        if word in n["title"].lower() or word in n["description"].lower():
+                            self.artikel.append({"title": n["title"],
+                                                 "link": n["url"],
+                                                 "datum": n["published_at"]})
+                            break
+                offset = offset + 100
 
 
 
@@ -94,6 +110,7 @@ class NewsGrab():
             data = data.decode('utf-8')
             data = json.loads(data)
             for n in data["articles"]:
+                print(n)
                 for word in self.search_words:
                     if word in n["summary"].lower():
                         self.artikel.append({"title": n["title"],
@@ -134,7 +151,7 @@ class NewsGrab():
             if r.status_code not in [250, ]:
                 print(r.status_code)
             print(receiver.email)
-            time.sleep(5)
+            time.sleep(2)
 
 if "__main__" == __name__:
     news = NewsGrab()
