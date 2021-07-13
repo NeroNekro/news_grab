@@ -9,7 +9,7 @@ Die cron.py sollte täglich mit einem Cronjob aufgerufen werden:
 
 Die app.py sollte im produktiven Umfeld mit Gunicorn gestartet werden:
 ```
-gunicorn --user=www-data --group=www-data --bind 0.0.0.0:5000 wsgi:app --daemon
+gunicorn --user=www-data --group=www-data --bind 0.0.0.0:1234 app:app --daemon
 ```
 Die Webanwendung erstellt beim erstmaligen Stadt eine SQLite3 Datenbank, in der alle Emailadressen gespeichert werden. Meldet sich ein User an, wird dieser
 erst die Mails empfangen, wenn in der Email der Aktivierungslink angeklickt wird.
@@ -44,3 +44,7 @@ In jeder Zeile nur ein Feed
 
 ## Lizenz
 Ein Backlink oder Hinweis zum Author wäre nett :)
+
+## Datenschutzbestimmungen und Impressum
+Die Datenschutzbestimmungen und das Impressum müssen in die Dateien anmeldung.html und abmeldung.html
+ergänzt werden.
