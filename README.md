@@ -43,7 +43,7 @@ pass = starkespasswortinklartext
 In jeder Zeile nur ein Feed
 
 ## Lizenz
-Ein Backlink oder Hinweis zum Author wäre nett :)
+Nur für den privaten Gebrauch kostenlos. Für eine kommerzielle Nutzung schickt mir eine Mail an: tobi@jacobs.network
 
 ## Datenschutzbestimmungen und Impressum
 Die Datenschutzbestimmungen und das Impressum müssen in die Dateien anmeldung.html und abmeldung.html
